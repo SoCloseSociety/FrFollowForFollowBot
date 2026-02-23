@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1b1b1b"/>
+      <stop offset="100%" style="stop-color:#2a2a3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="300" rx="16" fill="url(#bg)"/>
+  <circle cx="50" cy="50" r="120" fill="#575ECF" opacity="0.04"/>
+  <circle cx="850" cy="250" r="150" fill="#575ECF" opacity="0.04"/>
+  <circle cx="450" cy="150" r="200" fill="#575ECF" opacity="0.02"/>
+  <g transform="translate(405, 55)">
+    <path d="M45 5 L85 25 L45 18 L25 40 Z" fill="#575ECF" opacity="0.9"/>
+    <path d="M45 5 L5 25 L25 40 L45 18 Z" fill="#7B80E0" opacity="0.8"/>
+    <text x="45" y="55" text-anchor="middle" fill="#575ECF" font-family="system-ui" font-size="14" font-weight="700">F4F</text>
+  </g>
+  <text x="450" y="135" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="700" letter-spacing="0.5">FR Follow For Follow Bot</text>
+  <text x="450" y="165" text-anchor="middle" fill="#a0a0b8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="400">Bot Telegram de follow-for-follow gamifié pour Instagram</text>
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500">
+    <rect x="130" y="190" width="105" height="24" rx="12" fill="#575ECF" opacity="0.15"/>
+    <text x="182" y="206" text-anchor="middle" fill="#575ECF">Gamification</text>
+    <rect x="250" y="190" width="95" height="24" rx="12" fill="#575ECF" opacity="0.15"/>
+    <text x="297" y="206" text-anchor="middle" fill="#575ECF">Missions</text>
+    <rect x="360" y="190" width="95" height="24" rx="12" fill="#575ECF" opacity="0.15"/>
+    <text x="407" y="206" text-anchor="middle" fill="#575ECF">Leaderboard</text>
+    <rect x="470" y="190" width="85" height="24" rx="12" fill="#575ECF" opacity="0.15"/>
+    <text x="512" y="206" text-anchor="middle" fill="#575ECF">Referrals</text>
+    <rect x="570" y="190" width="115" height="24" rx="12" fill="#575ECF" opacity="0.15"/>
+    <text x="627" y="206" text-anchor="middle" fill="#575ECF">Free &amp; Open Source</text>
+    <rect x="700" y="190" width="85" height="24" rx="12" fill="#575ECF" opacity="0.15"/>
+    <text x="742" y="206" text-anchor="middle" fill="#575ECF">Auto Mode</text>
+  </g>
+  <text x="450" y="245" text-anchor="middle" fill="#4a4a5a" font-family="system-ui, -apple-system, sans-serif" font-size="11">Python &bull; Aiogram 3 &bull; instagrapi &bull; SQLite &bull; APScheduler</text>
+  <text x="450" y="280" text-anchor="middle" fill="#3a3a4a" font-family="system-ui, -apple-system, sans-serif" font-size="10">Built with purpose by SoClose — soclose.co</text>
+</svg>
