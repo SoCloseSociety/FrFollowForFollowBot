@@ -1,16 +1,19 @@
 from __future__ import annotations
 import aiosqlite
 from pathlib import Path
+import os
 
 from config import settings
 from database.models import TABLES_SQL
 
-_db: aiosqlite.Connection | None = None
+def get_database_path() -> str:
+    return os.getenv('DATABASE_PATH', settings.database_path)
 
+_db: aiosqlite.Connection | None = None
 
 async def init_db() -> None:
     global _db
-    db_path = Path(settings.database_path)
+    db_path = Path(get_database_path())
     db_path.parent.mkdir(parents=True, exist_ok=True)
 
     _db = await aiosqlite.connect(str(db_path))
