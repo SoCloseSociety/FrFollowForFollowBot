@@ -7,7 +7,6 @@ from database.models import TABLES_SQL
 
 _db: aiosqlite.Connection | None = None
 
-
 async def init_db() -> None:
     global _db
     db_path = Path(settings.database_path)
