@@ -1,16 +1,14 @@
 from __future__ import annotations
 import aiosqlite
 from pathlib import Path
-
 from config import settings
 from database.models import TABLES_SQL
 
 _db: aiosqlite.Connection | None = None
 
-
 async def init_db() -> None:
     global _db
-    db_path = Path(settings.database_path)
+    db_path = Path(settings.DATABASE_PATH)
     db_path.parent.mkdir(parents=True, exist_ok=True)
 
     _db = await aiosqlite.connect(str(db_path))
@@ -24,12 +22,10 @@ async def init_db() -> None:
         await _db.execute(sql)
     await _db.commit()
 
-
 async def get_db() -> aiosqlite.Connection:
     if _db is None:
         raise RuntimeError("Database not initialized. Call init_db() first.")
     return _db
-
 
 async def close_db() -> None:
     global _db
