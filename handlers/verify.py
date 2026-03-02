@@ -1,6 +1,4 @@
-import logging
-from datetime import datetime
-
+import os
 from aiogram import Bot, Router
 from aiogram.filters import Command
 from aiogram.types import CallbackQuery, Message
@@ -16,7 +14,6 @@ logger = logging.getLogger(__name__)
 router = Router(name="verify")
 
 VERIFY_COOLDOWN_SECONDS = 60
-
 
 async def _run_verification(db_user: dict, send_func, bot: Bot) -> None:
     """Core verification logic shared by command and callback."""
@@ -95,7 +92,7 @@ async def _run_verification(db_user: dict, send_func, bot: Bot) -> None:
                     target_username=mission["target_instagram_username"],
                 )
             except Exception as e:
-                logger.error(f"Verification error for @{mission['target_instagram_username']}: {e}")
+                logger.error(f"Verification error for @{mission['target_instagram_username']}: {e})
                 missing_usernames.append(mission["target_instagram_username"])
                 continue
 
@@ -167,7 +164,8 @@ async def _run_verification(db_user: dict, send_func, bot: Bot) -> None:
                 level_emoji=Texts.LEVEL_EMOJIS.get(updated_user["level"], "🌱"),
             )
         elif verified_count > 0:
-            missing_text = "\n".join(f"  • @{u}" for u in missing_usernames)
+            missing_text = \"
+".join(f"  • @{u}" for u in missing_usernames)
             text = Texts.VERIFY_PARTIAL.format(
                 verified=verified_count,
                 total=total,
@@ -194,17 +192,14 @@ async def _run_verification(db_user: dict, send_func, bot: Bot) -> None:
         except Exception:
             pass
 
-
 @router.message(Command("verifier"))
 async def cmd_verify(message: Message, db_user: dict, bot: Bot, **kwargs) -> None:
     await _run_verification(db_user, message.answer, bot)
-
 
 @router.callback_query(MenuCallback.filter(lambda c: c.action == "verify"))
 async def cb_verify_menu(callback: CallbackQuery, db_user: dict, bot: Bot, **kwargs) -> None:
     await callback.answer()
     await _run_verification(db_user, callback.message.answer, bot)
-
 
 @router.callback_query(VerifyCallback.filter())
 async def cb_verify_batch(
