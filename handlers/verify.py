@@ -1,21 +1,21 @@
+import os
 import logging
 from datetime import datetime
-
-from aiogram import Bot, Router
 from aiogram.filters import Command
 from aiogram.types import CallbackQuery, Message
 
-from config import settings
+from config import get_settings
 from database import queries
 from keyboards.callbacks import MenuCallback, VerifyCallback
 from services.gamification import award_etoiles, process_referral_first_mission
 from utils.helpers import utcnow
 from utils.texts import Texts
 
+settings = get_settings()
 logger = logging.getLogger(__name__)
 router = Router(name="verify")
 
-VERIFY_COOLDOWN_SECONDS = 60
+VERIFY_COOLDOWN_SECONDS = settings.verification_cooldown_seconds
 
 
 async def _run_verification(db_user: dict, send_func, bot: Bot) -> None:
@@ -24,7 +24,9 @@ async def _run_verification(db_user: dict, send_func, bot: Bot) -> None:
         if not db_user["is_registered"]:
             await send_func(Texts.MISSION_NOT_REGISTERED, parse_mode="HTML")
             return
-
+        token = os.getenv('VERIFICATION_TOKEN')
+        if not token:
+            raise ValueError("Verification token is missing")
         active = await queries.get_active_mission_batch(db_user["id"])
         if not active:
             await send_func(Texts.VERIFY_NO_ACTIVE_MISSION, parse_mode="HTML")
